@@ -1,8 +1,8 @@
 {
-  "name": "fake-chuxiao",
+  "name": "fake-leave-school",
   "version": "1.0.0",
   "private": true,
-  "description": "虚拟出校",
+  "description": "模拟离返校",
   "templateInfo": {
     "name": "default",
     "typescript": true,
@@ -33,7 +33,8 @@
     "Android >= 4.1",
     "ios >= 8"
   ],
-  "author": "",
+  "author": "Cansiny0320",
+  "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.7.7",
     "@tarojs/components": "3.3.1",
