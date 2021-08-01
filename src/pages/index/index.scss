@@ -18,7 +18,7 @@
 }
 
 .date {
-  font-size: 110px;
+  font-size: 105px;
   font-weight: bold;
   color: #fff;
   position: absolute;
@@ -99,9 +99,9 @@
   display: inline-block;
   &.name {
     width: 420px;
-    height: 130px;
     font-size: 135px;
     font-weight: bold;
+    height: 140px;
   }
   &.location {
     width: 150px;
@@ -109,7 +109,6 @@
   }
   &.type {
     font-size: 50px;
-
     width: 50px;
   }
 }
