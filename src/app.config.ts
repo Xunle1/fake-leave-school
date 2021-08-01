@@ -1,9 +1,9 @@
 export default {
-  pages: ["pages/index/index"],
+  pages: ["pages/index/index", "pages/detail/index"],
   window: {
     backgroundTextStyle: "light",
     navigationBarBackgroundColor: "#9085ff",
-    navigationBarTitleText: "出入校管理——扫码",
+    navigationBarTitleText: "出入校管理",
     navigationBarTextStyle: "white",
   },
 };

@@ -1,3 +1,3 @@
 export default {
-  navigationBarTitleText: "出入校管理——扫码",
+  navigationBarTitleText: "出入校管理",
 };
