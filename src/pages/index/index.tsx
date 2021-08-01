@@ -24,7 +24,6 @@ const Index = () => {
   const [isLeave, setIsLeave] = useState(false);
   const [isBack, setIsBack] = useState(false);
   const [name, setName] = useState("姓名");
-  const [date, setDate] = useState("");
   const [applyTime, setApplyTime] = useState("");
   const [leave, setLeave] = useState<Info>(initState);
   const [back, setBack] = useState<Info>(initState);
@@ -50,6 +49,9 @@ const Index = () => {
     removeStorage({
       key: "status",
     });
+    removeStorage({
+      key: "apply_time",
+    });
     setApplyTime(getApplyTime());
     setLeave({ ...initState });
     setBack({ ...initState });
@@ -57,8 +59,20 @@ const Index = () => {
     setIsBack(false);
   }
   useEffect(() => {
-    setDate(getDate());
-    setApplyTime(getApplyTime());
+    getStorage({
+      key: "apply_time",
+      success: (res) => {
+        setApplyTime(res.data);
+      },
+      fail: () => {
+        const time = getApplyTime();
+        setApplyTime(time);
+        setStorage({
+          key: "apply_time",
+          data: time,
+        });
+      },
+    });
     getStorage({
       key: "name",
       success: (res) => {
@@ -239,11 +253,11 @@ const Index = () => {
         </View>
         <View className="item">
           <Text>出发时间</Text>
-          <Text>{date}</Text>
+          <Text>{getDate()}</Text>
         </View>
         <View className="item">
           <Text>预计返校时间</Text>
-          <Text>{date}</Text>
+          <Text>{getDate()}</Text>
         </View>
         <View className="item">
           <Text>外出地点</Text>
