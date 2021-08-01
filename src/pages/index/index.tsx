@@ -108,6 +108,7 @@ const Index = () => {
           location,
         };
         if (type === "出校") {
+          setIsLeave(true);
           setLeave({ ...info });
           setStorage({
             key: "leave",
@@ -115,7 +116,6 @@ const Index = () => {
               ...info,
             },
           });
-
           setStorage({
             key: "status",
             data: "1",
@@ -126,6 +126,7 @@ const Index = () => {
             },
           });
         } else {
+          setIsBack(true);
           setBack({ ...info });
           setStorage({
             key: "back",
