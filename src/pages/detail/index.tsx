@@ -71,11 +71,7 @@ const Detail = () => {
           <Text>个</Text>
         </View>
         <View className="item location">
-          <Text>从</Text>
-          <Input
-            value={router.params.location}
-            className="input location"
-          ></Input>
+          <Text>从{router.params.location}</Text>
           <Text>扫码{type}的同学</Text>
         </View>
         <View
