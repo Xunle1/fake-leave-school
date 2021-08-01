@@ -121,7 +121,7 @@ const Index = () => {
             data: "1",
             success: () => {
               navigateTo({
-                url: `/pages/detail/index?location=${location}`,
+                url: `/pages/detail/index?location=${location}&type=出校`,
               });
             },
           });
@@ -139,7 +139,7 @@ const Index = () => {
             data: "2",
             success: () => {
               navigateTo({
-                url: `/pages/detail/index?location=${location}`,
+                url: `/pages/detail/index?location=${location}&type=入校`,
               });
             },
           });

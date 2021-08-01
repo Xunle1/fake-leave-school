@@ -6,11 +6,12 @@ import "./index.scss";
 
 const Detail = () => {
   const router = useRouter();
-  const [isLeave, setIsLeave] = useState(true);
+  const [isLeave, setIsLeave] = useState(
+    router.params.type === "出校" ? true : false
+  );
   const [time, setTime] = useState("");
   const [type, setType] = useState("");
   const [name, setName] = useState("姓名");
-  const [location, setLocation] = useState("崇文门");
   const [stuNum, setStuNum] = useState("学号");
   const [college, setCollege] = useState("学院");
   const [num, setNum] = useState(0);
@@ -23,9 +24,6 @@ const Detail = () => {
     setNum(data.num);
   }
   useEffect(() => {
-    console.log(router);
-
-    // setLocation(router.params.location!);
     getStorage({
       key: "name",
       success: (res) => {
@@ -74,7 +72,10 @@ const Detail = () => {
         </View>
         <View className="item location">
           <Text>从</Text>
-          <Input value={location} className="input location"></Input>
+          <Input
+            value={router.params.location}
+            className="input location"
+          ></Input>
           <Text>扫码{type}的同学</Text>
         </View>
         <View
