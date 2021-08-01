@@ -1,0 +1,155 @@
+.index {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #9085ff;
+  height: 380px;
+  z-index: -1;
+}
+
+.date {
+  font-size: 110px;
+  font-weight: bold;
+  color: #fff;
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.main {
+  width: 865px;
+  height: 950px;
+  background-color: #fff;
+  color: #0e07cf;
+  font-size: 50px;
+  box-shadow: 0px 0px 12px #e7e7e7;
+  border-radius: 38px;
+  padding: 120px 90px 37px;
+  box-sizing: border-box;
+  margin: 280px 0 50px;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: -110px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 215px;
+    height: 215px;
+    background-image: url("../../asstes/logo.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+  .item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: baseline;
+    &.name {
+      display: flex;
+      align-items: flex-end;
+      font-weight: bold;
+    }
+    &.num {
+      margin-bottom: 50px;
+      display: flex;
+      align-items: flex-end;
+    }
+    &.location {
+      margin-bottom: 22px;
+    }
+    &.img {
+      width: 685px;
+      height: 356px;
+      background-position: 0 -30px;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      border-radius: 28px;
+      &.leave {
+        background-image: url("../../asstes/leave.png");
+      }
+      &.back {
+        background-image: url("../../asstes/back.jpg");
+      }
+    }
+    .people_num {
+      font-weight: bold;
+      color: #32c696;
+      font-size: 130px;
+      margin-bottom: -24px;
+      vertical-align: baseline;
+    }
+  }
+}
+
+.input {
+  display: inline-block;
+  &.name {
+    width: 420px;
+    height: 130px;
+    font-size: 135px;
+    font-weight: bold;
+  }
+  &.location {
+    width: 150px;
+    font-size: 50px;
+  }
+  &.type {
+    font-size: 50px;
+
+    width: 50px;
+  }
+}
+
+.info {
+  width: 100%;
+  padding: 0 60px;
+  box-sizing: border-box;
+  font-size: 55px;
+  color: #666666;
+  .item {
+    margin-bottom: 100px;
+    padding-bottom: 36px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    .icon {
+      width: 66px;
+      height: 66px;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    &.stu_num {
+      .icon {
+        background-image: url("../../asstes/1.png");
+      }
+    }
+    &.college {
+      .icon {
+        background-image: url("../../asstes/3.png");
+      }
+    }
+    .text {
+      margin-left: 35px;
+    }
+    .content {
+      // margin-left: 100px;
+      width: 700px;
+      text-align: right;
+    }
+    border-bottom: 1px solid #f0f0f0;
+  }
+}
