@@ -22,7 +22,7 @@ const initState: Info = {
 
 const Index = () => {
   const [isLeave, setIsLeave] = useState(false);
-  const [isBack, setIsIsBack] = useState(false);
+  const [isBack, setIsBack] = useState(false);
   const [name, setName] = useState("姓名");
   const [date, setDate] = useState("");
   const [applyTime, setApplyTime] = useState("");
@@ -47,9 +47,14 @@ const Index = () => {
     removeStorage({
       key: "back",
     });
+    removeStorage({
+      key: "status",
+    });
     setApplyTime(getApplyTime());
     setLeave({ ...initState });
     setBack({ ...initState });
+    setIsLeave(false);
+    setIsBack(false);
   }
   useEffect(() => {
     setDate(getDate());
@@ -85,7 +90,7 @@ const Index = () => {
             },
           });
           setIsLeave(true);
-          setIsIsBack(true);
+          setIsBack(true);
         }
       },
     });
