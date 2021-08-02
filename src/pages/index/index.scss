@@ -59,7 +59,7 @@
 
         &::after {
           content: "";
-          background-color: #9f8bec;
+          background-color: #ffcc62;
           border: 2px solid #eee;
           width: 26rpx;
           height: 26rpx;
@@ -67,6 +67,12 @@
           left: -48rpx;
           top: 13rpx;
           border-radius: 50%;
+        }
+        &.first::after {
+          background-color: #9f8bec;
+        }
+        &.pass::after {
+          background-color: #9f8bec;
         }
       }
 

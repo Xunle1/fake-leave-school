@@ -185,7 +185,7 @@ const Index = () => {
       <View className="container">
         <View className="section">
           <View className="section__item">
-            <View className="section__title" onClick={reset}>
+            <View className="section__title first" onClick={reset}>
               申请
             </View>
             <View className="section__info">
@@ -215,7 +215,7 @@ const Index = () => {
       <View className="container">
         <View className="section">
           <View className="section__item">
-            <View className="section__title">
+            <View className={`"section__title" ${isLeave && "pass"}`}>
               <Text>扫码离校</Text>
               <Text className={`scan ${isLeave && "scaned"}`} onClick={scan}>
                 离校扫码
@@ -237,7 +237,7 @@ const Index = () => {
       <View className="container">
         <View className="section">
           <View className="section__item">
-            <View className="section__title last">
+            <View className={`"section__title last" ${isBack && "pass"}`}>
               <Text>返校销假</Text>
               <Text className={`scan ${isBack && "scaned"}`} onClick={scan}>
                 返校扫码
