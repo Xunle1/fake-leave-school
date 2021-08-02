@@ -4,6 +4,8 @@ const json2base64 = (json: any) =>
   Buffer.from(JSON.stringify(json)).toString("base64");
 const getNowTimestamp = () => Math.round(+new Date() / 1000);
 
+type Type = "出校" | "入校";
+
 const chu = {
   version: "1.1",
   location: "崇文门",
@@ -20,32 +22,22 @@ const requestData = {
   ...userInfo,
   log_id: 1,
 };
-export const leave = () =>
+
+const apply = (type: Type) =>
   request({
     url: "https://we.cqupt.edu.cn/api/lxsp/post_lxsp_sm_test20210311.php",
     method: "POST",
     data: {
       key: json2base64({
         ...requestData,
-        type: "出校",
+        type,
       }),
     },
     header: {
-      "content-type": "application/json", // 默认值
+      "content-type": "application/json",
     },
   });
 
-export const back = () =>
-  request({
-    url: "https://we.cqupt.edu.cn/api/lxsp/post_lxsp_sm_test20210311.php",
-    method: "POST",
-    data: {
-      key: json2base64({
-        ...requestData,
-        type: "入校",
-      }),
-    },
-    header: {
-      "content-type": "application/json", // 默认值
-    },
-  });
+export const leave = () => apply("出校");
+
+export const back = () => apply("入校");
