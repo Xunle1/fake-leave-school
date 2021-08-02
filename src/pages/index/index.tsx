@@ -217,7 +217,13 @@ const Index = () => {
           <View className="section__item">
             <View className={`"section__title" ${isLeave && "pass"}`}>
               <Text>扫码离校</Text>
-              <Text className={`scan ${isLeave && "scaned"}`} onClick={scan}>
+              <Text
+                className={`scan ${isLeave && "scaned"}`}
+                onClick={() => {
+                  if (isLeave) return;
+                  scan();
+                }}
+              >
                 离校扫码
               </Text>
             </View>
@@ -239,7 +245,13 @@ const Index = () => {
           <View className="section__item">
             <View className={`"section__title last" ${isBack && "pass"}`}>
               <Text>返校销假</Text>
-              <Text className={`scan ${isBack && "scaned"}`} onClick={scan}>
+              <Text
+                className={`scan ${isBack && "scaned"}`}
+                onClick={() => {
+                  if (isBack) return;
+                  scan();
+                }}
+              >
                 返校扫码
               </Text>
             </View>
