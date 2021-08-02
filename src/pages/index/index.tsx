@@ -129,7 +129,6 @@ const Index = () => {
   function scan() {
     scanCode({
       scanType: ["qrCode"],
-      onlyFromCamera: true,
       success: (res) => {
         const data = JSON.parse(res.result);
         const { type, location } = data;
