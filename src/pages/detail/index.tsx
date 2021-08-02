@@ -1,25 +1,24 @@
 import { useState, useEffect } from "react";
 import { View, Text, Input } from "@tarojs/components";
 import { getStorage, setStorage, useRouter } from "@tarojs/taro";
-import { leave, back } from "../../apis";
+import { apply, Type, Location } from "../../apis";
 import "./index.scss";
 
 const Detail = () => {
   const router = useRouter();
   const [time, setTime] = useState("");
-  const [type, setType] = useState("");
   const [name, setName] = useState("姓名");
   const [stuNum, setStuNum] = useState("学号");
   const [college, setCollege] = useState("学院");
   const [num, setNum] = useState(0);
   const [editable, setEditable] = useState(false);
-  const isLeave = router.params.type === "出校" ? true : false;
+  const type = router.params.type as Type;
+  const location = router.params.location as Location;
   async function getNum() {
     const {
       data: { data },
-    } = await (isLeave ? leave() : back());
+    } = await apply(type, location);
     setTime(data.time);
-    setType(data.type);
     setNum(data.num);
   }
   useEffect(() => {
@@ -60,10 +59,12 @@ const Detail = () => {
           <Text>个</Text>
         </View>
         <View className="item location">
-          <Text>从{router.params.location}</Text>
+          <Text>从{location}</Text>
           <Text>扫码{type}的同学</Text>
         </View>
-        <View className={`item img ${isLeave ? "leave" : "back"}`}></View>
+        <View
+          className={`item img ${type === "出校" ? "leave" : "back"}`}
+        ></View>
       </View>
       <View className="info">
         <View className="item stu_num">
