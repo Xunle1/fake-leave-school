@@ -4,40 +4,38 @@ const json2base64 = (json: any) =>
   Buffer.from(JSON.stringify(json)).toString("base64");
 const getNowTimestamp = () => Math.round(+new Date() / 1000);
 
-type Type = "出校" | "入校";
+export type Type = "出校" | "入校";
+export type Location = "崇文门" | "腾飞门";
 
-const chu = {
+const baseData = {
   version: "1.1",
-  location: "崇文门",
   latitude: "",
   longitude: "",
-  timestamp: getNowTimestamp(),
 };
 const userInfo = {
   xh: "", // 学号
   openid: "", // open_id
 };
 const requestData = {
-  ...chu,
+  ...baseData,
   ...userInfo,
   log_id: 1,
 };
 
-const apply = (type: Type) =>
-  request({
+export const apply = (type: Type, location: Location) => {
+  return request({
     url: "https://we.cqupt.edu.cn/api/lxsp/post_lxsp_sm_test20210311.php",
     method: "POST",
     data: {
       key: json2base64({
         ...requestData,
         type,
+        location,
+        timestamp: getNowTimestamp(),
       }),
     },
     header: {
       "content-type": "application/json",
     },
   });
-
-export const leave = () => apply("出校");
-
-export const back = () => apply("入校");
+};
