@@ -177,6 +177,12 @@ const Index = () => {
       },
     });
   }
+
+  function getBackTitleClass() {
+    if (isLeave && !isBack) return "active";
+    if (isLeave && isBack) return "pass";
+  }
+
   return (
     <View className="home">
       <View className="title" onClick={() => setEditable(!editable)}>
@@ -215,10 +221,12 @@ const Index = () => {
       <View className="container">
         <View className="section">
           <View className="section__item">
-            <View className={`"section__title" ${isLeave && "pass"}`}>
+            <View
+              className={`"section__title" ${isLeave ? "pass" : "active"} `}
+            >
               <Text>扫码离校</Text>
               <Text
-                className={`scan ${isLeave && "scaned"}`}
+                className={`scan ${!isLeave && "active"}`}
                 onClick={() => {
                   if (isLeave) return;
                   scan();
@@ -243,12 +251,12 @@ const Index = () => {
       <View className="container">
         <View className="section">
           <View className="section__item">
-            <View className={`"section__title last" ${isBack && "pass"}`}>
+            <View className={`"section__title last" ${getBackTitleClass()}`}>
               <Text>返校销假</Text>
               <Text
-                className={`scan ${isBack && "scaned"}`}
+                className={`scan ${getBackTitleClass()} `}
                 onClick={() => {
-                  if (isBack) return;
+                  if (!isLeave || isBack) return;
                   scan();
                 }}
               >
