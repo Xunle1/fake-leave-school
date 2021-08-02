@@ -30,10 +30,10 @@ const Index = () => {
   const [isLeave, setIsLeave] = useState(false);
   const [isBack, setIsBack] = useState(false);
   const [name, setName] = useState("姓名");
+  const [stuNum, setStuNum] = useState("学号");
   const [applyTime, setApplyTime] = useState("");
   const [leave, setLeave] = useState<Info>(initState);
   const [back, setBack] = useState<Info>(initState);
-
   function getDate() {
     return dayjs().format("YYYY-MM-DD");
   }
@@ -115,6 +115,12 @@ const Index = () => {
           setLeaveInfo();
           setBackInfo();
         }
+      },
+    });
+    getStorage({
+      key: "stuNum",
+      success: (res) => {
+        setStuNum(res.data);
       },
     });
   }, []);
@@ -250,7 +256,17 @@ const Index = () => {
       <View className="detail">
         <View className="item">
           <Text>学号</Text>
-          <Text>2019211590</Text>
+          <Input
+            value={stuNum}
+            className="input"
+            onInput={(e) => {
+              setStuNum(e.detail.value);
+              setStorage({
+                key: "stuNum",
+                data: e.detail.value,
+              });
+            }}
+          ></Input>
         </View>
         <View className="item">
           <Text>姓名</Text>

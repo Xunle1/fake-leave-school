@@ -70,17 +70,7 @@ const Detail = () => {
         <View className="item stu_num">
           <View className="icon"></View>
           <View className="text">学号：</View>
-          <Input
-            className="content"
-            value={stuNum}
-            onInput={(e) => {
-              setStuNum(e.detail.value);
-              setStorage({
-                key: "stuNum",
-                data: e.detail.value,
-              });
-            }}
-          ></Input>
+          <Text className="content">{stuNum}</Text>
         </View>
         <View className="item college">
           <View className="icon"></View>
