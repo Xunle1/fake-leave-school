@@ -34,6 +34,7 @@ const Index = () => {
   const [applyTime, setApplyTime] = useState("");
   const [leave, setLeave] = useState<Info>(initState);
   const [back, setBack] = useState<Info>(initState);
+  const [editable, setEditable] = useState(false);
   function getDate() {
     return dayjs().format("YYYY-MM-DD");
   }
@@ -178,7 +179,9 @@ const Index = () => {
   }
   return (
     <View className="home">
-      <View className="title">申请流程</View>
+      <View className="title" onClick={() => setEditable(!editable)}>
+        申请流程
+      </View>
       <View className="container">
         <View className="section">
           <View className="section__item">
@@ -189,6 +192,7 @@ const Index = () => {
               <View className="item">
                 <Text>申请人</Text>
                 <Input
+                  disabled={!editable}
                   value={name}
                   className="input"
                   onInput={(e) => {
@@ -257,6 +261,7 @@ const Index = () => {
         <View className="item">
           <Text>学号</Text>
           <Input
+            disabled={!editable}
             value={stuNum}
             className="input"
             onInput={(e) => {

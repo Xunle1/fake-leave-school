@@ -6,15 +6,14 @@ import "./index.scss";
 
 const Detail = () => {
   const router = useRouter();
-  const [isLeave, setIsLeave] = useState(
-    router.params.type === "出校" ? true : false
-  );
   const [time, setTime] = useState("");
   const [type, setType] = useState("");
   const [name, setName] = useState("姓名");
   const [stuNum, setStuNum] = useState("学号");
   const [college, setCollege] = useState("学院");
   const [num, setNum] = useState(0);
+  const [editable, setEditable] = useState(false);
+  const isLeave = router.params.type === "出校" ? true : false;
   async function getNum() {
     const {
       data: { data },
@@ -24,6 +23,7 @@ const Detail = () => {
     setNum(data.num);
   }
   useEffect(() => {
+    getNum();
     getStorage({
       key: "name",
       success: (res) => {
@@ -43,13 +43,12 @@ const Detail = () => {
       },
     });
   }, []);
-  useEffect(() => {
-    getNum();
-  }, [isLeave]);
   return (
     <View className="index">
       <View className="bg"></View>
-      <View className="date">{time}</View>
+      <View className="date" onClick={() => setEditable(!editable)}>
+        {time}
+      </View>
       <View className="main">
         <View className="item name">
           <Text>欢迎</Text>
@@ -76,6 +75,7 @@ const Detail = () => {
           <View className="icon"></View>
           <View className="text">学院：</View>
           <Input
+            disabled={!editable}
             className="content"
             value={college}
             onInput={(e) => {
