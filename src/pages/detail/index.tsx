@@ -51,7 +51,7 @@ const Detail = () => {
       <View className="main">
         <View className="item name">
           <Text>欢迎</Text>
-          <Text className="input name">{name}</Text>
+          <Text className="name">{name}</Text>
         </View>
         <View className="item num">
           <Text>您是今天第</Text>

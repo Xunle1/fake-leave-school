@@ -30,7 +30,6 @@
 
 .main {
   width: 865px;
-  height: 950px;
   background-color: #fff;
   color: #0e07cf;
   font-size: 50px;
@@ -57,10 +56,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    vertical-align: baseline;
     &.name {
+      margin: -30px 0 -25px;
       display: flex;
-      align-items: flex-end;
+      align-items: baseline;
+      font-weight: bold;
+    }
+    & .name {
+      font-size: 135px;
       font-weight: bold;
     }
     &.num {
@@ -88,7 +91,7 @@
     .people_num {
       font-weight: bold;
       color: #32c696;
-      font-size: 130px;
+      font-size: 125px;
       margin-bottom: -24px;
       vertical-align: baseline;
     }
@@ -97,12 +100,6 @@
 
 .input {
   display: inline-block;
-  &.name {
-    width: 420px;
-    font-size: 135px;
-    font-weight: bold;
-    height: 140px;
-  }
   &.location {
     width: 150px;
     font-size: 50px;
@@ -118,7 +115,7 @@
   padding: 0 60px;
   box-sizing: border-box;
   font-size: 55px;
-  color: #666666;
+  color: #666;
   .item {
     margin-bottom: 100px;
     padding-bottom: 36px;
@@ -146,7 +143,6 @@
       white-space: nowrap;
     }
     .content {
-      // margin-left: 100px;
       width: 700px;
       text-align: right;
     }
