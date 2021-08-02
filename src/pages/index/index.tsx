@@ -10,6 +10,12 @@ import { useState, useEffect } from "react";
 import * as dayjs from "dayjs";
 import "./index.scss";
 
+enum STATUS {
+  "INITIAL" = 0,
+  "LEAVE" = 1,
+  "BACK" = 2,
+}
+
 interface Info {
   time: string;
   location: string;
@@ -37,6 +43,26 @@ const Index = () => {
 
   function getApplyTime() {
     return dayjs(+new Date() - 60 * 60 * 1000).format("YYYY-MM-DD HH:mm:ss");
+  }
+
+  function setLeaveInfo() {
+    getStorage({
+      key: "leave",
+      success: (res) => {
+        setLeave(res.data);
+      },
+    });
+    setIsLeave(true);
+  }
+
+  function setBackInfo() {
+    getStorage({
+      key: "back",
+      success: (res) => {
+        setBack(res.data);
+      },
+    });
+    setIsBack(true);
   }
 
   function reset() {
@@ -82,29 +108,12 @@ const Index = () => {
     getStorage({
       key: "status",
       success: (res) => {
-        if (res.data === "1") {
-          getStorage({
-            key: "leave",
-            success: (res) => {
-              setLeave(res.data);
-            },
-          });
-          setIsLeave(true);
-        } else if (res.data === "2") {
-          getStorage({
-            key: "leave",
-            success: (res) => {
-              setLeave(res.data);
-            },
-          });
-          getStorage({
-            key: "back",
-            success: (res) => {
-              setBack(res.data);
-            },
-          });
-          setIsLeave(true);
-          setIsBack(true);
+        const { data: status } = res;
+        if (status === STATUS.LEAVE) {
+          setLeaveInfo();
+        } else if (res.data === STATUS.BACK) {
+          setLeaveInfo();
+          setBackInfo();
         }
       },
     });
