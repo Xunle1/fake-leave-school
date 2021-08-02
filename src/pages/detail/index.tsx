@@ -53,17 +53,7 @@ const Detail = () => {
       <View className="main">
         <View className="item name">
           <Text>欢迎</Text>
-          <Input
-            value={name}
-            className="input name"
-            onInput={(e) => {
-              setName(e.detail.value);
-              setStorage({
-                key: "name",
-                data: e.detail.value,
-              });
-            }}
-          ></Input>
+          <Text className="input name">{name}</Text>
         </View>
         <View className="item num">
           <Text>您是今天第</Text>
@@ -74,10 +64,7 @@ const Detail = () => {
           <Text>从{router.params.location}</Text>
           <Text>扫码{type}的同学</Text>
         </View>
-        <View
-          className={`item img ${isLeave ? "leave" : "back"}`}
-          onClick={() => setIsLeave(!isLeave)}
-        ></View>
+        <View className={`item img ${isLeave ? "leave" : "back"}`}></View>
       </View>
       <View className="info">
         <View className="item stu_num">
