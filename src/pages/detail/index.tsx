@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { View, Text, Input } from "@tarojs/components";
 import { getStorage, setStorage, useRouter } from "@tarojs/taro";
 import { apply } from "../../apis";
-import "./index.scss";
+import styles from "./index.module.scss";
 import { Type, Location, Storage } from "../common/constants";
+import classNames from "classnames/bind";
+let cx = classNames.bind(styles);
 
 const Detail = () => {
   const router = useRouter();
@@ -44,41 +46,44 @@ const Detail = () => {
     });
   }, []);
   return (
-    <View className="index">
-      <View className="bg"></View>
-      <View className="date" onClick={() => setEditable(!editable)}>
+    <View className={styles.index}>
+      <View className={styles.bg}></View>
+      <View className={styles.date} onClick={() => setEditable(!editable)}>
         {time}
       </View>
-      <View className="main">
-        <View className="item name">
+      <View className={styles.main}>
+        <View className={`${styles.item} ${styles.name}`}>
           <Text>欢迎</Text>
-          <Text className="name">{name}</Text>
+          <Text className={styles.name}>{name}</Text>
         </View>
-        <View className="item num">
+        <View className={`${styles.item} ${styles.num}`}>
           <Text>您是今天第</Text>
-          <Text className="people_num">{num}</Text>
+          <Text className={styles.people_num}>{num}</Text>
           <Text>个</Text>
         </View>
-        <View className="item location">
+        <View className={`${styles.item} ${styles.location}`}>
           <Text>从{location}</Text>
           <Text>扫码{type}的同学</Text>
         </View>
         <View
-          className={`item img ${type === "出校" ? "leave" : "back"}`}
+          className={cx(["item", "img"], {
+            leave: type === "出校",
+            back: type !== "出校",
+          })}
         ></View>
       </View>
-      <View className="info">
-        <View className="item stu_num">
-          <View className="icon"></View>
-          <View className="text">学号：</View>
-          <Text className="content">{stuNum}</Text>
+      <View className={styles.info}>
+        <View className={`${styles.item} ${styles.stu_num}`}>
+          <View className={styles.icon}></View>
+          <View className={styles.text}>学号：</View>
+          <Text className={styles.content}>{stuNum}</Text>
         </View>
-        <View className="item college">
-          <View className="icon"></View>
-          <View className="text">学院：</View>
+        <View className={`${styles.item} ${styles.college}`}>
+          <View className={styles.icon}></View>
+          <View className={styles.text}>学院：</View>
           <Input
             disabled={!editable}
-            className="content"
+            className={styles.content}
             value={college}
             onInput={(e) => {
               setCollege(e.detail.value);

@@ -12,8 +12,10 @@ import { useState, useEffect } from "react";
 import { Location, STATUS, Storage, Type } from "../common/constants";
 import { Info, List, ListItem } from "../common/types";
 import { getTime } from "../common/helpers/date";
-import "./index.scss";
+import styles from "./index.module.scss";
 import { getInitList } from "../common/helpers";
+import classNames from "classnames/bind";
+let cx = classNames.bind(styles);
 
 interface ScanResult {
   code: string;
@@ -131,27 +133,24 @@ const InfoPage = () => {
     });
   }
 
-  function getBackTitleClass() {
-    if (isLeave && !isBack) return "active";
-    if (isLeave && isBack) return "pass";
-  }
-
   return (
-    <View className="home">
-      <View className="title" onClick={() => setEditable(!editable)}>
+    <View className={styles.home}>
+      <View className={styles.title} onClick={() => setEditable(!editable)}>
         申请流程
       </View>
-      <View className="container">
-        <View className="section">
-          <View className="section__item">
-            <View className="section__title first">申请</View>
-            <View className="section__info">
-              <View className="item">
+      <View className={styles.container}>
+        <View className={styles.section}>
+          <View className={styles.section__item}>
+            <View className={`${styles.section__title} ${styles.first}`}>
+              申请
+            </View>
+            <View className={styles.section__info}>
+              <View className={styles.item}>
                 <Text>申请人</Text>
                 <Input
                   disabled={!editable}
                   value={name}
-                  className="input"
+                  className={styles.input}
                   onInput={(e) => {
                     setName(e.detail.value);
                     setStorage({
@@ -161,7 +160,7 @@ const InfoPage = () => {
                   }}
                 ></Input>
               </View>
-              <View className="item">
+              <View className={styles.item}>
                 <Text>申请时间</Text>
                 <Text>{info.applyTime}</Text>
               </View>
@@ -169,15 +168,20 @@ const InfoPage = () => {
           </View>
         </View>
       </View>
-      <View className="container">
-        <View className="section">
-          <View className="section__item">
+      <View className={styles.container}>
+        <View className={styles.section}>
+          <View className={styles.section__item}>
             <View
-              className={`"section__title" ${isLeave ? "pass" : "active"} `}
+              className={cx("section__title", {
+                pass: isLeave,
+                active: !isLeave,
+              })}
             >
               <Text>扫码离校</Text>
               <Text
-                className={`scan ${!isLeave && "active"}`}
+                className={cx("scan", {
+                  active: !isLeave,
+                })}
                 onClick={() => {
                   if (isLeave) return;
                   scan("出校");
@@ -186,12 +190,12 @@ const InfoPage = () => {
                 离校扫码
               </Text>
             </View>
-            <View className="section__info">
-              <View className="item">
+            <View className={styles.section__info}>
+              <View className={styles.item}>
                 <Text>扫码地点</Text>
                 <Text>{info.leaveInfo.location}</Text>
               </View>
-              <View className="item">
+              <View className={styles.item}>
                 <Text>出校时间</Text>
                 <Text>{info.leaveInfo.time}</Text>
               </View>
@@ -199,13 +203,21 @@ const InfoPage = () => {
           </View>
         </View>
       </View>
-      <View className="container">
-        <View className="section">
-          <View className="section__item">
-            <View className={`"section__title last" ${getBackTitleClass()}`}>
+      <View className={styles.container}>
+        <View className={styles.section}>
+          <View className={styles.section__item}>
+            <View
+              className={cx(["section__title", "last"], {
+                active: isLeave && !isBack,
+                pass: isLeave && isBack,
+              })}
+            >
               <Text>返校销假</Text>
               <Text
-                className={`scan ${getBackTitleClass()} `}
+                className={cx("scan", {
+                  active: isLeave && !isBack,
+                  pass: isLeave && isBack,
+                })}
                 onClick={() => {
                   if (!isLeave || isBack) return;
                   scan("入校");
@@ -214,12 +226,12 @@ const InfoPage = () => {
                 返校扫码
               </Text>
             </View>
-            <View className="section__info">
-              <View className="item">
+            <View className={styles.section__info}>
+              <View className={styles.item}>
                 <Text>扫码地点</Text>
                 <Text>{info.backInfo.location}</Text>
               </View>
-              <View className="item">
+              <View className={styles.item}>
                 <Text>返校时间</Text>
                 <Text>{info.backInfo.time}</Text>
               </View>
@@ -227,14 +239,14 @@ const InfoPage = () => {
           </View>
         </View>
       </View>
-      <View className="title">申请详情</View>
-      <View className="detail">
-        <View className="item">
+      <View className={styles.title}>申请详情</View>
+      <View className={styles.detail}>
+        <View className={styles.item}>
           <Text>学号</Text>
           <Input
             disabled={!editable}
             value={stuNum}
-            className="input"
+            className={styles.input}
             onInput={(e) => {
               setStuNum(e.detail.value);
               setStorage({
@@ -244,27 +256,27 @@ const InfoPage = () => {
             }}
           ></Input>
         </View>
-        <View className="item">
+        <View className={styles.item}>
           <Text>姓名</Text>
           <Text>{name}</Text>
         </View>
-        <View className="item">
+        <View className={styles.item}>
           <Text>请假类型</Text>
           <Text>普通离返校</Text>
         </View>
-        <View className="item">
+        <View className={styles.item}>
           <Text>出发时间</Text>
           <Text>{info.date}</Text>
         </View>
-        <View className="item">
+        <View className={styles.item}>
           <Text>预计返校时间</Text>
           <Text>{info.date}</Text>
         </View>
-        <View className="item">
+        <View className={styles.item}>
           <Text>外出地点</Text>
           <Text>重庆市,重庆市,南岸区</Text>
         </View>
-        <View className="item">
+        <View className={styles.item}>
           <Text>外出事由</Text>
           <Text>外出</Text>
         </View>
