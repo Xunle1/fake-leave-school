@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { View, Text, Input } from "@tarojs/components";
 import { getStorage, setStorage, useRouter } from "@tarojs/taro";
-import { apply, Type, Location } from "../../apis";
+import { apply } from "../../apis";
 import "./index.scss";
+import { Type, Location, Storage } from "../common/constants";
 
 const Detail = () => {
   const router = useRouter();
@@ -24,19 +25,19 @@ const Detail = () => {
   useEffect(() => {
     getNum();
     getStorage({
-      key: "name",
+      key: Storage.NAME,
       success: (res) => {
         setName(res.data);
       },
     });
     getStorage({
-      key: "stuNum",
+      key: Storage.STU_NUM,
       success: (res) => {
         setStuNum(res.data);
       },
     });
     getStorage({
-      key: "college",
+      key: Storage.COLLEGE,
       success: (res) => {
         setCollege(res.data);
       },
@@ -82,7 +83,7 @@ const Detail = () => {
             onInput={(e) => {
               setCollege(e.detail.value);
               setStorage({
-                key: "college",
+                key: Storage.COLLEGE,
                 data: e.detail.value,
               });
             }}

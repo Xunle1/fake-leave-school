@@ -1,0 +1,46 @@
+.item {
+  margin-top: 25rpx;
+  font-size: 30rpx;
+  color: #aeaeae;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+  position: relative;
+  border-top: 3px solid #eee;
+  border-bottom: 3px solid #eee;
+  &:nth-of-type(1) {
+    margin-top: 10rpx;
+  }
+
+  .info_wrapper {
+    padding: 20rpx 35rpx;
+  }
+  .name {
+    font-size: 32rpx;
+    color: #818181;
+  }
+
+  .status {
+    font-size: 32rpx;
+    color: #9084ff;
+  }
+
+  .line {
+    display: flex;
+    justify-content: space-between;
+    padding: 10rpx 0;
+  }
+}
+
+.detail {
+  width: 100%;
+  height: 82rpx;
+  line-height: 82rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #9084ff;
+  border-top: 3px solid #eee;
+  background-color: #fff;
+  &:hover {
+    background-color: #ededed;
+  }
+}

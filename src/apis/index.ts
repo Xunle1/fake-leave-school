@@ -1,11 +1,9 @@
 import { request } from "@tarojs/taro";
+import { Type, Location } from "src/pages/common/constants";
 
 const json2base64 = (json: any) =>
   Buffer.from(JSON.stringify(json)).toString("base64");
 const getNowTimestamp = () => Math.round(+new Date() / 1000);
-
-export type Type = "出校" | "入校";
-export type Location = "崇文门" | "腾飞门";
 
 const baseData = {
   version: "1.1",

@@ -47,7 +47,7 @@
     transform: translateX(-50%);
     width: 215px;
     height: 215px;
-    background-image: url("../../asstes/logo.png");
+    background-image: url("../../static/logo.png");
     background-size: 100% 100%;
     background-repeat: no-repeat;
   }
@@ -82,10 +82,10 @@
       background-repeat: no-repeat;
       border-radius: 28px;
       &.leave {
-        background-image: url("../../asstes/leave.png");
+        background-image: url("../../static/leave.png");
       }
       &.back {
-        background-image: url("../../asstes/back.jpg");
+        background-image: url("../../static/back.jpg");
       }
     }
     .people_num {
@@ -130,12 +130,12 @@
     }
     &.stu_num {
       .icon {
-        background-image: url("../../asstes/1.png");
+        background-image: url("../../static/1.png");
       }
     }
     &.college {
       .icon {
-        background-image: url("../../asstes/3.png");
+        background-image: url("../../static/3.png");
       }
     }
     .text {

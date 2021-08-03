@@ -1,0 +1,15 @@
+.apply {
+  background-color: #f7f7f7;
+  min-height: 100vh;
+  position: relative;
+  image {
+    width: 100%;
+    height: 149rpx;
+  }
+  .count {
+    position: absolute;
+    top: 125rpx;
+    left: 30rpx;
+    color: #363636;
+  }
+}
