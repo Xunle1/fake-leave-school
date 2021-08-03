@@ -1,9 +1,15 @@
 import { useState, useEffect } from "react";
 import { View, Text, Input } from "@tarojs/components";
-import { getStorage, setStorage, useRouter } from "@tarojs/taro";
-import { apply } from "../../apis";
+import {
+  getStorage,
+  setStorage,
+  useRouter,
+  getCurrentInstance,
+  RequestTask,
+} from "@tarojs/taro";
 import styles from "./index.module.scss";
 import { Type, Location, Storage } from "../common/constants";
+import { ApplyRes } from "../../apis/index";
 import classNames from "classnames/bind";
 let cx = classNames.bind(styles);
 
@@ -20,7 +26,7 @@ const Detail = () => {
   async function getNum() {
     const {
       data: { data },
-    } = await apply(type, location);
+    } = await (getCurrentInstance().preloadData as RequestTask<ApplyRes>);
     setTime(data.time);
     setNum(data.num);
   }

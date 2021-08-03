@@ -7,6 +7,7 @@ import {
   useRouter,
   navigateBack,
   showToast,
+  preload,
 } from "@tarojs/taro";
 import { useState, useEffect } from "react";
 import { Location, STATUS, Storage, Type } from "../common/constants";
@@ -15,6 +16,7 @@ import { getTime } from "../common/helpers/date";
 import styles from "./index.module.scss";
 import { getInitList } from "../common/helpers";
 import classNames from "classnames/bind";
+import { apply } from "../../apis/index";
 let cx = classNames.bind(styles);
 
 interface ScanResult {
@@ -107,6 +109,7 @@ const InfoPage = () => {
             key: Storage.LIST,
             data: [newInfo, ...list.slice(1)],
           });
+          preload(apply(type, location));
           navigateTo({
             url: `/pages/detail/index?location=${location}&type=出校`,
           });
@@ -125,6 +128,7 @@ const InfoPage = () => {
             key: Storage.LIST,
             data: [newInfo, ...list.slice(1)],
           });
+          preload(apply(type, location));
           navigateTo({
             url: `/pages/detail/index?location=${location}&type=入校`,
           });
