@@ -52,7 +52,7 @@ const Index = () => {
   const handleApply = () => {
     const newList = [
       {
-        ...initList[0],
+        ...getInitList()[0],
         id: list[0].id + 1,
       },
       ...list,
