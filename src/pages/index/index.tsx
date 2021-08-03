@@ -70,6 +70,7 @@ const Index = () => {
       <Text className={styles.count}>申请记录 ({totalList.length}条)</Text>
       {list.map((e) => (
         <Item
+          key={e.id}
           name={name}
           id={e.id}
           status={e.status}
