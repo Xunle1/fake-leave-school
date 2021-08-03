@@ -79,7 +79,9 @@ const InfoPage = () => {
         if (scanType !== type) {
           showToast({
             title: "扫码类型错误",
+            icon: "none",
             duration: 1000,
+            mask: true,
           });
           return;
         }
