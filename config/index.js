@@ -37,6 +37,7 @@ const config = {
         },
       },
     },
+    baseLevel: 8,
   },
   h5: {
     publicPath: "/",
