@@ -266,7 +266,7 @@ const InfoPage = () => {
         </View>
         <View className={styles.item}>
           <Text>请假类型</Text>
-          <Text>普通离返校</Text>
+          <Text>当日离返校</Text>
         </View>
         <View className={styles.item}>
           <Text>出发时间</Text>
