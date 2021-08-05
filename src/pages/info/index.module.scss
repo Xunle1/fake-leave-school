@@ -10,21 +10,25 @@
 
   .input {
     text-align: right;
+    color: #656565;
+    font-size: 28rpx;
   }
 
   .container {
     background-color: #fff;
     padding: 30rpx 20rpx 0 60rpx;
-
+    &:nth-child(2) .section {
+      border-bottom: 1rpx solid transparent;
+    }
     .section {
-      border-bottom: 1px solid #eee;
+      border-bottom: 1rpx solid #eee;
       margin-left: 30rpx;
       padding-right: 30rpx;
       color: #878787;
 
-      &__item {
-        margin-bottom: 30rpx;
-      }
+      // &__item {
+      //   margin-bottom: 30rpx;
+      // }
 
       &__title {
         color: #777;
@@ -47,11 +51,10 @@
           content: "";
           background-color: #eee;
           width: 4rpx;
-          height: 210rpx;
+          height: 213rpx;
           position: absolute;
-          left: -51px;
-          top: 40rpx;
-          z-index: 1;
+          left: -50px;
+          top: 44rpx;
         }
 
         &.last::before {
@@ -61,7 +64,7 @@
         &::after {
           content: "";
           background-color: #d8d8d8;
-          border: 2px solid #eee;
+          border: 4rpx solid #eee;
           width: 26rpx;
           height: 26rpx;
           position: absolute;
