@@ -94,45 +94,24 @@ const InfoPage = () => {
           time: nowTime,
           location,
         };
-        if (type === "出校") {
-          const newInfo: ListItem = {
-            ...info,
-            updateTime: nowTime,
-            status: STATUS.LEAVE,
-            leaveInfo: {
-              ...leaveOrBackInfo,
-            },
-          };
-          setIsLeave(true);
-          setInfo(newInfo);
-          setStorage({
-            key: Storage.LIST,
-            data: [newInfo, ...list.slice(1)],
-          });
-          preload(apply(type, location));
-          navigateTo({
-            url: `/pages/detail/index?location=${location}&type=出校`,
-          });
-        } else if (type === "入校") {
-          const newInfo: ListItem = {
-            ...info,
-            updateTime: nowTime,
-            status: STATUS.BACK,
-            backInfo: {
-              ...leaveOrBackInfo,
-            },
-          };
-          setIsBack(true);
-          setInfo(newInfo);
-          setStorage({
-            key: Storage.LIST,
-            data: [newInfo, ...list.slice(1)],
-          });
-          preload(apply(type, location));
-          navigateTo({
-            url: `/pages/detail/index?location=${location}&type=入校`,
-          });
-        }
+        const newInfo: ListItem = {
+          ...info,
+          updateTime: nowTime,
+          status: STATUS.LEAVE,
+          [type === "出校" ? "leaveInfo" : "backInfo"]: {
+            ...leaveOrBackInfo,
+          },
+        };
+        type === "出校" ? setIsLeave(true) : setIsBack(true);
+        setInfo(newInfo);
+        setStorage({
+          key: Storage.LIST,
+          data: [newInfo, ...list.slice(1)],
+        });
+        preload(apply(type, location));
+        navigateTo({
+          url: `/pages/detail/index?location=${location}&type=${type}`,
+        });
       },
     });
   }
