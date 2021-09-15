@@ -261,7 +261,7 @@ const InfoPage = () => {
         </View>
         <View className={styles.item}>
           <Text>外出事由</Text>
-          <Text>外出</Text>
+          <Text>买书</Text>
         </View>
       </View>
     </View>

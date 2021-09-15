@@ -5,7 +5,7 @@ import {
   useDidShow,
   useReachBottom,
 } from "@tarojs/taro";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { List } from "../common/types";
 import Item from "./components/Item";
 import styles from "./index.modules.scss";
@@ -18,14 +18,14 @@ const ONE_PAGE_NUM = 10;
 const Index = () => {
   const [page, setPage] = useState(1);
   const [totalList, setTotalList] = useState<List>(initList);
-  const [list, setList] = useState<List>(initList);
+  // const [list, setList] = useState<List>(initList);
   const [name, setName] = useState("姓名");
   useDidShow(() => {
     getStorage({
       key: Storage.LIST,
       success: (res) => {
         setTotalList(res.data);
-        setList(res.data.slice(0, ONE_PAGE_NUM * page));
+        // setList(res.data.slice(0, ONE_PAGE_NUM * page));
       },
       fail: () => {
         setStorage({
@@ -44,20 +44,24 @@ const Index = () => {
 
   useReachBottom(() => {
     if (totalList.length > page * ONE_PAGE_NUM) {
-      setList(totalList.slice(0, ONE_PAGE_NUM * (page + 1)));
+      // setList(totalList.slice(0, ONE_PAGE_NUM * (page + 1)));
       setPage(page + 1);
     }
   });
+
+  // useEffect(() => {
+  //   setList(totalList.slice(0, ONE_PAGE_NUM * (page + 1)));
+  // }, totalList);
 
   const handleApply = () => {
     const newList = [
       {
         ...getInitList()[0],
-        id: list[0].id + 1,
+        id: totalList[0].id + 1,
       },
-      ...list,
+      ...totalList,
     ];
-    setList(newList);
+    setTotalList(newList);
     setStorage({
       key: Storage.LIST,
       data: newList,
@@ -67,8 +71,10 @@ const Index = () => {
   return (
     <View className={styles.apply}>
       <Image src={ApplyImg} onClick={handleApply} />
-      <Text className={styles.count}>申请记录 ({totalList.length}条)</Text>
-      {list.map((e) => (
+      <Text className={styles.count}>
+        申请记录 ({200 + totalList.length}条)
+      </Text>
+      {totalList.map((e) => (
         <Item
           key={e.id}
           name={name}
